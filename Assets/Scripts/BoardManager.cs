@@ -117,12 +117,22 @@ public class BoardManager : MonoBehaviour {
 
 				oldY = BaseList [i].transform.position.y;
 				oldZ = BaseList [i].transform.position.z;
-				print("x :" +oldX +" y :" + oldY + " z : "+oldZ );
+
+				
+				//print("x :" +oldX +" y :" + oldY + " z : "+oldZ );
 			}
 		}
 	}
-
-
+	public int[] returnBases(){
+		int[] baseR = new int[BaseHeight];
+		for (int i = 0; i < BaseHeight; i++) {
+			baseR [i] = bases [i];
+		}
+		return baseR;
+	}
+	public void startBoard(){
+		Start ();
+	}
 	// Update is called once per frame
 	void Update () {
 	
