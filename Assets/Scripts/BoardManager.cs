@@ -15,7 +15,7 @@ public class BoardManager : MonoBehaviour {
 	private float oldY;
 	private float oldZ;
 	private float heightBase; 
-
+	private float mroot2 = 5*Mathf.Sqrt (2);
 
 
 	// Use this for initialization
@@ -41,7 +41,7 @@ public class BoardManager : MonoBehaviour {
 			if (i == 0) {
 			
 				BaseList[i] = GameObject.Instantiate (BoardBases [0]);
-
+				BaseList [i].transform.position = new Vector3 (0, 0, 0);
 				bases [i] = 1;
 				oldX = 0;
 				oldY = 0;
@@ -61,7 +61,7 @@ public class BoardManager : MonoBehaviour {
 					if (bases [i - 1] == 1) {
 						
 						// [i].gameObject.transform.Translate (new Vector3 (oldX + 5.0f + heightBase, oldY + (heightBase), oldZ));///
-						BaseList [i].transform.position= new Vector3(oldX + 5.0f + heightBase, oldY - heightBase,oldZ);
+						BaseList [i].transform.position= new Vector3(oldX + 5.0f + heightBase-mroot2, oldY - heightBase,oldZ);
 
 
 					} else {
@@ -78,7 +78,7 @@ public class BoardManager : MonoBehaviour {
 				
 
 					if (bases [i - 1] == 1) {
-						BaseList [i].transform.position= new Vector3(oldX, oldY - heightBase,oldZ + 5 + heightBase);
+						BaseList [i].transform.position= new Vector3(oldX, oldY - heightBase,oldZ + 5 + heightBase-mroot2);
 		
 					}
 					else {
@@ -95,12 +95,12 @@ public class BoardManager : MonoBehaviour {
 
 					if (bases [i - 1] == 2) {
 						//BaseList [i].gameObject.transform.Translate (new Vector3 (oldX + 10, oldY - heightBase, oldZ));
-						BaseList [i].transform.position= new Vector3(oldX + 5 + heightBase, oldY - heightBase,oldZ);
+						BaseList [i].transform.position= new Vector3(oldX + 5 + heightBase+mroot2, oldY - heightBase,oldZ);
 
 					} else if (bases [i - 1] == 3) {
 						
 						//BaseList [i].gameObject.transform.Translate (new Vector3 (oldX, oldY - heightBase, oldZ + 10));
-						BaseList [i].transform.position= new Vector3(oldX, oldY - heightBase,oldZ + 5 +heightBase);
+						BaseList [i].transform.position= new Vector3(oldX, oldY - heightBase,oldZ + 5 +heightBase+mroot2);
 			
 
 					} else {
