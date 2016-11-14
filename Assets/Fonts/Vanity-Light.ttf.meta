@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: f1d89628057186f43a37741d8de3dd04
+timeCreated: 1479159500
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Vanity
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 5c9f36f567c1e214aa937b51e4170693, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
