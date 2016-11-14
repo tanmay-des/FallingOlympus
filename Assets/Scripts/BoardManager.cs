@@ -9,6 +9,7 @@ public class BoardManager : MonoBehaviour {
 	public GameObject[] BoardBases;
 	private GameObject[] BaseList;
 	public int[] bases;
+	public bool[] directions;
 	public float baseSize = 1.0f;
 	public float posMult = 10.0f;
 	private float oldX;
@@ -30,7 +31,7 @@ public class BoardManager : MonoBehaviour {
 		BaseList = new GameObject[BaseHeight];
 
 		bases = new int[BaseHeight];
-
+		directions = new bool[BaseHeight];
 		for (int i = 0; i < BaseHeight; i++) {
 			bases [i] = 0;// 0 -- nothing, 1-- Base, 2-- Vertical , 3-- Horizontal
 		}
@@ -46,6 +47,7 @@ public class BoardManager : MonoBehaviour {
 				oldX = 0;
 				oldY = 0;
 				oldZ = 0;
+				directions [0] = false;
 			} 
 			else
 			{
@@ -53,9 +55,9 @@ public class BoardManager : MonoBehaviour {
 
 				int rv = Random.Range (0, 10);
 
-				if ((rv >= 1 && rv <=5) && (bases [i - 1] == 1 || bases [i - 1] == 2)) {
+				if (i == 1 || ((rv >= 1 && rv <=5) && (bases [i - 1] == 1 || bases [i - 1] == 2))) {
 					bases [i] = 2;
-
+					directions [i] = false;
 					BaseList[i] = GameObject.Instantiate (BoardBases [1]);
 
 					if (bases [i - 1] == 1) {
@@ -73,7 +75,7 @@ public class BoardManager : MonoBehaviour {
 
 				} else if ((rv >= 6 && rv <= 10) && (bases [i - 1] == 1 || bases [i - 1] == 3)) {
 					bases [i] = 3;
-
+					directions [i] = true;
 					BaseList[i] = GameObject.Instantiate (BoardBases [2]);
 				
 
@@ -90,7 +92,9 @@ public class BoardManager : MonoBehaviour {
 
 				} else {
 					bases [i] = 1;
-
+					directions [i] = directions [i - 1];
+					if (bases [i - 1] == 1)
+						directions [i] = false;
 					BaseList[i] = GameObject.Instantiate (BoardBases [0]);
 
 					if (bases [i - 1] == 2) {
