@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
 	private float oldZ = 0;
 	private float targetX = 0;
 	private float targetZ = 0;
+	public float sz = 10;
 
 	// Use this for initialization
 	void Start () {
@@ -24,12 +25,13 @@ public class PlayerController : MonoBehaviour {
 		bm = GameObject.FindGameObjectWithTag("Board");
 		brm = bm.GetComponent<BoardManager> ();
 		rb = GetComponent<Rigidbody> ();
+		sz = GameObject.FindGameObjectWithTag ("Base").GetComponent<Renderer>().bounds.size.x;
 		blist = brm.bases;
 		dir = brm.directions;
 		Physics.gravity = new Vector3 (0, -20.0f, 0);
 		initiateList ();
-		targetX = 5.0f;
-		targetZ = 5.0f;
+		targetX = sz/2;
+		targetZ = sz/2;
 
 	}
 
@@ -62,13 +64,13 @@ public class PlayerController : MonoBehaviour {
 			if (CurrentBase + 1 < blist.Length) {
 				if (dir [CurrentBase] != dir [CurrentBase + 1]) {
 					if (dir [CurrentBase]) {
-						if (oldZ >= targetZ - 5.0f) {
+						if (oldZ >= targetZ - sz/2) {
 							rb.velocity = xV;	
 						} else {
 							rb.velocity = zV;
 						}
 					} else {
-						if (oldX >= targetX - 5.0f) {
+						if (oldX >= targetX - sz/2) {
 							rb.velocity = zV;
 						} else {
 							rb.velocity = xV;
@@ -98,15 +100,15 @@ public class PlayerController : MonoBehaviour {
 			if (blist [CurrentBase] == 1) {
 				if (CurrentBase + 1 < blist.Length) {
 					if (dir [CurrentBase]) {
-						targetZ += 10.0f;
+						targetZ += sz;
 					} else {
-						targetX += 10.0f;
+						targetX += sz;
 					}
 				}
 			}else if(blist[CurrentBase] == 2){
-				targetX += 10.0f / Mathf.Sqrt (2);
+				targetX += sz / Mathf.Sqrt (2);
 			}else {
-				targetZ += 10.0f / Mathf.Sqrt (2);
+				targetZ += sz / Mathf.Sqrt (2);
 			}
 		}
 	}

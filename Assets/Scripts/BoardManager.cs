@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class BoardManager : MonoBehaviour {
 
-	public int BaseHeight = 30;
+	public int BaseHeight = 20;
 	public GameObject[] BoardBases;
 	private GameObject[] BaseList;
 	public int[] bases;
@@ -16,7 +16,8 @@ public class BoardManager : MonoBehaviour {
 	private float oldY;
 	private float oldZ;
 	private float heightBase; 
-	private float mroot2 = 5*Mathf.Sqrt (2);
+	//private float mroot2 = 5*Mathf.Sqrt (2);
+	private float mroot2 = 0;
 
 
 	// Use this for initialization
@@ -27,7 +28,7 @@ public class BoardManager : MonoBehaviour {
 	}
 
 	void initializeBase(){
-
+		 
 		BaseList = new GameObject[BaseHeight];
 
 		bases = new int[BaseHeight];
@@ -52,7 +53,7 @@ public class BoardManager : MonoBehaviour {
 			else
 			{
 				
-
+				 
 				int rv = Random.Range (0, 10);
 
 				if (i == 1 || ((rv >= 1 && rv <=5) && (bases [i - 1] == 1 || bases [i - 1] == 2))) {
